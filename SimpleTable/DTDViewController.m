@@ -17,7 +17,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    NSArray *array = [[NSArray alloc] initWithObjects:@"Sleepy", @"Sneezy",
+                      @"Bashful", @"Happy", @"Doc", @"Grumpy", @"Dopey", @"Thorin",
+                      @"Dorin", @"Nori", @"Ori", @"Balin", @"Dwalin", @"Fili", @"Kili",
+                      @"Oin", @"Gloin", @"Bifur", @"Bofur", @"Bombur", nil];
+    
+    self.dwarves = array;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +33,68 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - tableview data source
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    return [self.dwarves count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier];
+    }
+    
+    //configure the cell
+    cell.textLabel.text = [self.dwarves objectAtIndex:indexPath.row];
+    
+    
+    return cell;
+    
+}
+
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
