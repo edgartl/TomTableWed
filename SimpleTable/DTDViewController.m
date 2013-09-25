@@ -46,6 +46,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"Called");
+    
     static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
@@ -57,6 +60,11 @@
     //configure the cell
     cell.textLabel.text = [self.dwarves objectAtIndex:indexPath.row];
     
+    UIImage *image = [UIImage imageNamed:@"star.png"];
+    cell.imageView.image = image;
+    
+    UIImage *imageHighlight = [UIImage imageNamed:@"star2.png"];
+    cell.imageView.highlightedImage = imageHighlight;
     
     return cell;
     
