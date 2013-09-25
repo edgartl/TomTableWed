@@ -47,14 +47,14 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"Called");
+   //NSLog(@"Called");
     
     static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:SimpleTableIdentifier];
     }
     
     //configure the cell
@@ -66,9 +66,27 @@
     UIImage *imageHighlight = [UIImage imageNamed:@"star2.png"];
     cell.imageView.highlightedImage = imageHighlight;
     
+    if (indexPath.row  < 7) {
+        cell.detailTextLabel.text = @"Mr. Disney";
+    } else {
+        cell.detailTextLabel.text = @"Mr. Tolkien";
+    }
+    
+    
     return cell;
     
 }
+
+
+#pragma mark - tableview delegate
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //NSLog(@"You picked %@", [self.dwarves objectAtIndex:indexPath.row]);
+    NSLog(@"You picked %i",indexPath.row);
+}
+
 
 
 @end
